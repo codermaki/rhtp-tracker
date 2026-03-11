@@ -1,14 +1,9 @@
-import { getStateData, getFederalData, getUpdateStatus } from "../../lib/storage";
+import { getStateData, getFederalData } from "../../lib/storage";
 
 export default async function handler(req, res) {
-  // Allow caching for 30s on the CDN, but always revalidate
-  res.setHeader("Cache-Control", "s-maxage=30, stale-while-revalidate");
-
-  const [stateData, federalData, updateStatus] = await Promise.all([
+  const [stateData, federalData] = await Promise.all([
     getStateData(),
     getFederalData(),
-    getUpdateStatus(),
   ]);
-
-  return res.status(200).json({ stateData, federalData, updateStatus });
+  return res.status(200).json({ stateData, federalData });
 }
