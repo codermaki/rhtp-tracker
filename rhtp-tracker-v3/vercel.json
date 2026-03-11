@@ -1,8 +1,0 @@
-{
-  "framework": "nextjs",
-  "functions": {
-    "pages/api/query-claude.js": {
-      "maxDuration": 60
-    }
-  }
-}
